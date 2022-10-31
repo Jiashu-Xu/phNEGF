@@ -58,8 +58,9 @@ int main() {
         i += 10;
     }
     Ph = (struct Phonon*)malloc(sizeof(struct Phonon) * 3);
-    Ph = genRibbon(AZ, index, withH, nLeadUnitCell, nCenterUnitCell);
+    Ph = genRibbon(AZ, index, withH, nLeadUnitCell, nCenterUnitCell); 
     leftlead = Ph[0]; central = Ph[1]; rightlead = Ph[2];
+      printf("genRibbon Done\n");
     for (j = 0; j < 3; j++) {
         for (int k = 0; k < 3; k++) {
             leftlead.latticevector[j][k] = -abs(leftlead.latticevector[j][k]);
@@ -74,14 +75,14 @@ int main() {
         pos2xyz(rightlead.pos, rightlead.type, r);
         pos2xyz(posmerge(posmerge(leftlead.pos, central.pos, 3, 2), rightlead.pos, 5, 2), typemerge(typemerge(leftlead.type, central.type, 3, 2), rightlead.type, 5, 2), lcr);//pos2xyz([leftlead.pos; central.pos;rightlead.pos] ,[leftlead.type; central.type; rightlead.type],'LCR.xyz');
     }*/
-    all.pos = posmerge(posmerge(leftlead.pos, central.pos, 3, 2), rightlead.pos, 5, 2);
-    all.type = typemerge(typemerge(leftlead.type, central.type, 3, 2), rightlead.type, 5, 2);
+    all.pos = posmerge(posmerge(leftlead.pos, central.pos, 12, 12), rightlead.pos,24, 12);
+    all.type = typemerge(typemerge(leftlead.type, central.type, 12, 12), rightlead.type, 24, 12);
     all.latticevector[0][0] = rightlead.pos[0][0] - leftlead.pos[0][0] + rightlead.latticevector[0][0];
     all.latticevector[0][1] = 0; all.latticevector[0][2] = 0;
     all.latticevector[1][0] = 0; all.latticevector[1][1] = 15; all.latticevector[1][2] = 0;
     all.latticevector[2][0] = 0; all.latticevector[2][1] = 0; all.latticevector[2][2] = 15;
-    checkLattice(leftlead, 3);
-    checkLattice(rightlead, 2);
+    checkLattice(leftlead, 12);
+    checkLattice(rightlead, 12);
     natL = size(leftlead.pos);
     natC = size(central.pos);
     natR = size(rightlead.pos);

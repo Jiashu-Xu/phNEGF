@@ -65,8 +65,8 @@ struct Phonon *genRibbon(char AZ,int index,int withH,int nCenterSupercell,int nL
     double **pos2=(double **)malloc(sizeof(double*)*(natC+natH));
     for (int i = 0; i < natC + natH; i++)
         pos2[i] = (double*)malloc(sizeof(double) * 3);
-    for(int i=0;i<natC+natH;i++)
-        uc.pos[i]=(double*)malloc(sizeof(double)*3);
+    /*for (int i = 0; i<natC + natH; i++)
+        uc.pos[i]=(double*)malloc(sizeof(double)*3);*/
     for(int i=0;i<natC+natH;i++)
         for(int j=0;j<3;j++)
             pos2[i][j]=uc.pos[i][j];
@@ -85,7 +85,7 @@ struct Phonon *genRibbon(char AZ,int index,int withH,int nCenterSupercell,int nL
                 double a=pos2[i-1][dir1-1];
                 double b=pos2[j-1][dir1-1];
                 if (a - b > eps){
-                    for(int k=1;k<=2;k++){
+                    for(int k=1;k<=3;k++){
                         double temp1=pos2[i-1][k-1];
                         pos2[i-1][k-1]=pos2[j-1][k-1];
                         pos2[j-1][k-1]=temp1;
@@ -131,10 +131,10 @@ struct Phonon *genRibbon(char AZ,int index,int withH,int nCenterSupercell,int nL
                 for(int i=0;i<natC+natH;i++)
                     Ph[0].type[i]=uc.type[i];
 
-                double **tmpuc=(double **)malloc(sizeof(double*)*(natC+natH));
+                double **tmpuc=(double **)malloc(sizeof(double *)*(natC+natH));
                 
                 for(int i=0;i<natC+natH;i++)
-                    tmpuc[i]=(double*)malloc(sizeof(double)*3);
+                    tmpuc[i]=(double *)malloc(sizeof(double)*3);
                 for(int i=0;i<natC+natH;i++)
                     for(int j=0;j<3;j++)
                         tmpuc[i][j]=uc.pos[i][j];
